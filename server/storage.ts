@@ -44,7 +44,8 @@ export class MemStorage implements IStorage {
       ...submission, 
       id, 
       createdAt: new Date(),
-      company: submission.company || null
+      company: submission.company || null,
+      projectType: "general" // Default value since field was removed from form
     };
     this.contactSubmissions.set(id, contactSubmission);
     return contactSubmission;

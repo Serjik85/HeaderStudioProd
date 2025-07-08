@@ -27,7 +27,6 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   name: true,
   email: true,
   company: true,
-  projectType: true,
   message: true,
 });
 

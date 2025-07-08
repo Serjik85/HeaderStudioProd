@@ -13,7 +13,6 @@ interface ContactFormData {
   name: string;
   email: string;
   company: string;
-  projectType: string;
   message: string;
 }
 
@@ -22,7 +21,6 @@ export function Contact() {
     name: "",
     email: "",
     company: "",
-    projectType: "",
     message: ""
   });
   
@@ -42,7 +40,6 @@ export function Contact() {
         name: "",
         email: "",
         company: "",
-        projectType: "",
         message: ""
       });
     },
@@ -57,10 +54,10 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message || !formData.projectType) {
+    if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Please fill in all required fields",
-        description: "Name, email, project type, and message are required.",
+        description: "Name, email, and message are required.",
         variant: "destructive",
       });
       return;
@@ -210,20 +207,7 @@ export function Contact() {
                 />
               </div>
               
-              <div>
-                <label className="block text-slate-700 font-medium mb-2">Project Type *</label>
-                <Select value={formData.projectType} onValueChange={(value) => handleInputChange("projectType", value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="web-development">Custom Web Development</SelectItem>
-                    <SelectItem value="ui-ux-design">UI/UX Design</SelectItem>
-                    <SelectItem value="ecommerce">E-commerce Solutions</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+
               
               <div>
                 <label className="block text-slate-700 font-medium mb-2">Message *</label>
