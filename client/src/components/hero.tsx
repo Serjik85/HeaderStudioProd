@@ -50,7 +50,7 @@ export function Hero() {
                   <CheckCircle className="text-green-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-800">50+ Projects</p>
+                  <p className="font-semibold text-slate-800">20+ Projects</p>
                   <p className="text-slate-600 text-sm">Successfully Delivered</p>
                 </div>
               </div>

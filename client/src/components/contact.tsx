@@ -220,7 +220,7 @@ export function Contact() {
                     <SelectItem value="web-development">Custom Web Development</SelectItem>
                     <SelectItem value="ui-ux-design">UI/UX Design</SelectItem>
                     <SelectItem value="ecommerce">E-commerce Solutions</SelectItem>
-                    <SelectItem value="mobile-app">Mobile App Development</SelectItem>
+                    <SelectItem value="performance">Performance Optimization</SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>

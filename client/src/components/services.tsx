@@ -4,7 +4,6 @@ import {
   Palette, 
   ShoppingCart, 
   Rocket, 
-  Smartphone, 
   BarChart3,
   Check
 } from "lucide-react";
@@ -15,7 +14,7 @@ const services = [
     title: "Custom Web Development",
     description: "Bespoke websites built with modern technologies, optimized for performance and scalability.",
     features: [
-      "React & Next.js Development",
+      "Modern Web Technologies",
       "Mobile-First Design",
       "SEO Optimization"
     ],
@@ -54,17 +53,7 @@ const services = [
     ],
     color: "text-green-500 bg-green-500/10"
   },
-  {
-    icon: Smartphone,
-    title: "Mobile Apps",
-    description: "Native and cross-platform mobile applications that extend your digital presence.",
-    features: [
-      "React Native Development",
-      "App Store Optimization",
-      "Push Notifications"
-    ],
-    color: "text-purple-500 bg-purple-500/10"
-  },
+
   {
     icon: BarChart3,
     title: "Analytics & SEO",

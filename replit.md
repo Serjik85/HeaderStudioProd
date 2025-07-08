@@ -91,7 +91,9 @@ This is a full-stack web application built with Express.js and React, featuring 
 
 Changelog:
 - July 08, 2025. Initial setup
+- July 08, 2025. Removed mobile app development services and updated project count to 20+ projects
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Technical preferences: Remove mobile app development services as company doesn't offer this service.

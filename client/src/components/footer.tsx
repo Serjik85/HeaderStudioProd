@@ -5,7 +5,7 @@ export function Footer() {
     { name: "Web Development", href: "#services" },
     { name: "UI/UX Design", href: "#services" },
     { name: "E-commerce", href: "#services" },
-    { name: "Mobile Apps", href: "#services" },
+    { name: "Performance Optimization", href: "#services" },
     { name: "SEO & Analytics", href: "#services" }
   ];
 
