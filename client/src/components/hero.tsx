@@ -23,7 +23,7 @@ export function Hero() {
                 <a href="#contact">Start Your Project</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white">
-                <a href="#portfolio">View Our Work</a>
+                <a href="#capabilities">View Our Capabilities</a>
               </Button>
             </div>
           </motion.div>

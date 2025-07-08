@@ -11,7 +11,7 @@ export function Footer() {
 
   const companyLinks = [
     { name: "About Us", href: "#about" },
-    { name: "Portfolio", href: "#portfolio" },
+    { name: "Capabilities", href: "#capabilities" },
     { name: "Careers", href: "#" },
     { name: "Contact", href: "#contact" },
     { name: "Blog", href: "#" }
