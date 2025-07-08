@@ -36,7 +36,7 @@ const services = [
     title: "E-commerce Solutions",
     description: "Powerful online stores that maximize sales and provide seamless shopping experiences.",
     features: [
-      "Shopify & WooCommerce",
+      "Custom E-commerce Solutions",
       "Payment Integration",
       "Inventory Management"
     ],

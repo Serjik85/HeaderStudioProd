@@ -96,4 +96,6 @@ Changelog:
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
-Technical preferences: Remove mobile app development services as company doesn't offer this service.
+Technical preferences: 
+- Remove mobile app development services as company doesn't offer this service
+- Remove specific platform references (Shopify & WooCommerce) - prefer generic descriptions of custom solutions
