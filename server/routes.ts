@@ -26,7 +26,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
       const submission = await storage.createContactSubmission(validatedData);
       
-      log('Форма успешно сохранена в базе, ID:', submission.id);
+      log('Форма успешно сохранена в базе, ID:', String(submission.id));
       
       // Отправляем уведомление администратору
       try {
