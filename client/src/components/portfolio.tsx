@@ -18,7 +18,7 @@ const capabilities = [
     icon: Code2,
     title: "Modern Technologies",
     description: "We use cutting-edge frameworks and tools to build robust, scalable applications.",
-    technologies: ["React", "TypeScript", "Node.js", "Express"],
+    technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
     color: "text-primary-blue bg-primary-blue/10"
   },
   {
