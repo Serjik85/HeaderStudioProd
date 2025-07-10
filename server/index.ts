@@ -1,6 +1,10 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import dotenv from 'dotenv';
+
+// Загрузка переменных окружения из файла .env
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -56,13 +60,15 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Serving the app on port 3000
+  // Serving the app on port from environment or default 3001
   // this serves both the API and the client.
-  const port = 3001;
+  const port = parseInt(process.env.PORT || '3001');
+  const host = process.env.HOST || '0.0.0.0';
+  
   server.listen({
     port,
-    host: "localhost",
+    host,
   }, () => {
-    log(`serving on port ${port}`);
+    log(`Server running at http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`);
   });
 })();
