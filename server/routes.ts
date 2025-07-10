@@ -8,9 +8,17 @@ import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Проверяем настройки email при запуске сервера
-  verifyEmailTransport().catch(err => {
-    log('Warning: Email service not configured properly:', err);
-  });
+  try {
+    log('Проверка настроек почтового сервера...');
+    const isEmailConfigured = await verifyEmailTransport();
+    if (isEmailConfigured) {
+      log('Почтовый сервер настроен корректно и готов к отправке писем');
+    } else {
+      log('ПРЕДУПРЕЖДЕНИЕ: Не удалось подключиться к почтовому серверу. Отправка писем может не работать.');
+    }
+  } catch (err) {
+    log('ОШИБКА: Не удалось проверить настройки почтового сервера:', String(err));
+  }
 
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
@@ -30,7 +38,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           log('Ошибка: Уведомление администратору не отправлено');
         }
       } catch (err) {
-        log('Критическая ошибка при отправке уведомления:', err);
+        log('Критическая ошибка при отправке уведомления:', String(err));
       }
       
       // Отправляем автоответ клиенту
@@ -43,7 +51,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           log('Ошибка: Автоответ клиенту не отправлен');
         }
       } catch (err) {
-        log('Критическая ошибка при отправке автоответа:', err);
+        log('Критическая ошибка при отправке автоответа:', String(err));
       }
       
       res.json({ success: true, id: submission.id });
