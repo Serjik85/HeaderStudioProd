@@ -10,7 +10,15 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.SMTP_USER || '',
     pass: process.env.SMTP_PASS || ''
-  }
+  },
+  // Явно указываем использование STARTTLS
+  requireTLS: true,
+  tls: {
+    ciphers: 'SSLv3',
+    rejectUnauthorized: false // Позволяет использовать самоподписанные сертификаты
+  },
+  debug: true, // Включаем отладку
+  logger: true // Включаем логирование
 });
 
 // Функция для проверки настроек транспорта
