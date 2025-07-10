@@ -2,14 +2,23 @@ import nodemailer from 'nodemailer';
 import { log } from './vite';
 import { type InsertContactSubmission } from '@shared/schema';
 
+// Вывод текущих настроек в лог
+log('Email настройки:');
+log('SMTP_HOST:', process.env.SMTP_HOST);
+log('SMTP_PORT:', process.env.SMTP_PORT);
+log('SMTP_SECURE:', process.env.SMTP_SECURE);
+log('SMTP_USER:', process.env.SMTP_USER);
+log('SMTP_PASS:', process.env.SMTP_PASS ? '***' : 'не указан');
+log('NOTIFICATION_EMAIL:', process.env.NOTIFICATION_EMAIL);
+
 // Создаем транспорт для отправки писем
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  host: process.env.SMTP_HOST,
   port: parseInt(process.env.SMTP_PORT || '587'),
   secure: process.env.SMTP_SECURE === 'true',
   auth: {
-    user: process.env.SMTP_USER || '',
-    pass: process.env.SMTP_PASS || ''
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
   },
   // Явно указываем использование STARTTLS
   requireTLS: true,
@@ -36,8 +45,15 @@ export async function verifyEmailTransport(): Promise<boolean> {
 // Функция для отправки уведомления о новой контактной форме
 export async function sendContactNotification(submission: InsertContactSubmission): Promise<boolean> {
   try {
+    log('Отправка уведомления о новой заявке...');
+    
     // Адрес, на который будут приходить уведомления
-    const recipientEmail = process.env.NOTIFICATION_EMAIL || 'admin@example.com';
+    const recipientEmail = process.env.NOTIFICATION_EMAIL;
+    
+    if (!recipientEmail) {
+      log('Ошибка: Не указан адрес для уведомлений (NOTIFICATION_EMAIL)');
+      return false;
+    }
     
     // Формирование текста письма
     const emailText = `
@@ -49,6 +65,8 @@ export async function sendContactNotification(submission: InsertContactSubmissio
       
       Сообщение:
       ${submission.message}
+      
+      Время отправки: ${new Date().toLocaleString()}
     `;
     
     // Формирование HTML-версии письма
@@ -59,21 +77,31 @@ export async function sendContactNotification(submission: InsertContactSubmissio
       <p><strong>Компания:</strong> ${submission.company || 'Не указана'}</p>
       <h3>Сообщение:</h3>
       <p>${submission.message.replace(/\n/g, '<br>')}</p>
+      <p><em>Время отправки: ${new Date().toLocaleString()}</em></p>
     `;
     
     // Отправка письма
     const info = await transporter.sendMail({
-      from: `"Web Studio" <${process.env.SMTP_USER || 'webstudio@example.com'}>`,
+      from: `"Web Studio" <${process.env.SMTP_USER}>`,
       to: recipientEmail,
       subject: 'Новая заявка с сайта Web Studio',
       text: emailText,
       html: emailHtml
     });
     
-    log('Email sent:', info.messageId);
+    log('Письмо отправлено успешно!');
+    log('ID письма:', info.messageId);
+    
+    if (info.messageId && (info.response || '').includes('250')) {
+      log('Статус отправки: OK');
+    } else {
+      log('Статус отправки: Неизвестно');
+      log('Ответ сервера:', info.response);
+    }
+    
     return true;
   } catch (error) {
-    log('Error sending email:', String(error));
+    log('Ошибка отправки письма:', String(error));
     return false;
   }
 }
@@ -81,6 +109,13 @@ export async function sendContactNotification(submission: InsertContactSubmissio
 // Функция для отправки автоответа клиенту
 export async function sendAutoReply(submission: InsertContactSubmission): Promise<boolean> {
   try {
+    log('Отправка автоответа клиенту...');
+    
+    if (!submission.email) {
+      log('Ошибка: Не указан email клиента для автоответа');
+      return false;
+    }
+    
     // Формирование текста письма
     const emailText = `
       Здравствуйте, ${submission.name}!
@@ -89,6 +124,8 @@ export async function sendAutoReply(submission: InsertContactSubmission): Promis
       
       С уважением,
       Команда Web Studio
+      
+      Время отправки: ${new Date().toLocaleString()}
     `;
     
     // Формирование HTML-версии письма
@@ -97,21 +134,31 @@ export async function sendAutoReply(submission: InsertContactSubmission): Promis
       <p>Спасибо за ваше обращение в Web Studio.</p>
       <p>Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</p>
       <p>С уважением,<br>Команда Web Studio</p>
+      <p><em>Время отправки: ${new Date().toLocaleString()}</em></p>
     `;
     
     // Отправка письма
     const info = await transporter.sendMail({
-      from: `"Web Studio" <${process.env.SMTP_USER || 'webstudio@example.com'}>`,
+      from: `"Web Studio" <${process.env.SMTP_USER}>`,
       to: submission.email,
       subject: 'Спасибо за ваше обращение',
       text: emailText,
       html: emailHtml
     });
     
-    log('Auto-reply sent:', info.messageId);
+    log('Автоответ отправлен успешно!');
+    log('ID письма:', info.messageId);
+    
+    if (info.messageId && (info.response || '').includes('250')) {
+      log('Статус отправки: OK');
+    } else {
+      log('Статус отправки: Неизвестно');
+      log('Ответ сервера:', info.response);
+    }
+    
     return true;
   } catch (error) {
-    log('Error sending auto-reply:', String(error));
+    log('Ошибка отправки автоответа:', String(error));
     return false;
   }
 }

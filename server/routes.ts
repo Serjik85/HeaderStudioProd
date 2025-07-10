@@ -18,15 +18,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
       const submission = await storage.createContactSubmission(validatedData);
       
+      log('Форма успешно сохранена в базе, ID:', submission.id);
+      
       // Отправляем уведомление администратору
-      sendContactNotification(validatedData).catch(err => {
-        log('Error sending notification email:', err);
-      });
+      try {
+        log('Пытаемся отправить уведомление администратору...');
+        const notificationSent = await sendContactNotification(validatedData);
+        if (notificationSent) {
+          log('Уведомление администратору успешно отправлено');
+        } else {
+          log('Ошибка: Уведомление администратору не отправлено');
+        }
+      } catch (err) {
+        log('Критическая ошибка при отправке уведомления:', err);
+      }
       
       // Отправляем автоответ клиенту
-      sendAutoReply(validatedData).catch(err => {
-        log('Error sending auto-reply email:', err);
-      });
+      try {
+        log('Пытаемся отправить автоответ клиенту...');
+        const autoReplySent = await sendAutoReply(validatedData);
+        if (autoReplySent) {
+          log('Автоответ клиенту успешно отправлен');
+        } else {
+          log('Ошибка: Автоответ клиенту не отправлен');
+        }
+      } catch (err) {
+        log('Критическая ошибка при отправке автоответа:', err);
+      }
       
       res.json({ success: true, id: submission.id });
     } catch (error) {
