@@ -123,16 +123,7 @@ export function Portfolio() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-800 mb-4">{capability.title}</h3>
                 <p className="text-slate-600 mb-6">{capability.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {capability.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+
               </motion.div>
             ))}
           </div>
