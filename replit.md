@@ -93,6 +93,7 @@ Changelog:
 - July 08, 2025. Initial setup
 - July 08, 2025. Removed mobile app development services and updated project count to 20+ projects
 - July 08, 2025. Replaced portfolio section with "Our Capabilities" and "How We Work" sections due to lack of portfolio projects
+- July 08, 2025. Removed pricing section and technology tags from capabilities section
 
 ## User Preferences
 
