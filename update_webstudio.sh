@@ -48,7 +48,7 @@ if pm2 list | grep -q "webstudio"; then
   pm2 restart webstudio
 else
   # Если приложение не запущено, запускаем его
-  pm2 start server/index.ts --name "webstudio" --interpreter=node -- --require ts-node/register
+  pm2 start start_webstudio.js --name "webstudio"
   pm2 save
 fi
 

@@ -16,7 +16,7 @@ cd $PROJECT_DIR
 
 # Запуск приложения
 echo "Запускаем приложение..."
-pm2 start server/index.ts --name "webstudio" --interpreter=node -- --require ts-node/register
+pm2 start start_webstudio.js --name "webstudio"
 
 # Сохранение конфигурации PM2
 echo "Сохраняем конфигурацию PM2..."
