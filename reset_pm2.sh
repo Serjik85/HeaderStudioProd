@@ -27,17 +27,17 @@ if ! npm list -g ts-node > /dev/null; then
   npm install -g ts-node
 fi
 
-# Проверяем наличие start_webstudio.js
-echo "5. Проверяем наличие start_webstudio.js..."
-if [ ! -f "start_webstudio.js" ]; then
-  echo "ОШИБКА: Файл start_webstudio.js не найден!"
+# Проверяем наличие start_webstudio.cjs
+echo "5. Проверяем наличие start_webstudio.cjs..."
+if [ ! -f "start_webstudio.cjs" ]; then
+  echo "ОШИБКА: Файл start_webstudio.cjs не найден!"
   echo "Пожалуйста, обновите код с GitHub перед запуском этого скрипта."
   exit 1
 fi
 
-# Запускаем приложение через start_webstudio.js
-echo "6. Запускаем приложение через start_webstudio.js..."
-pm2 start start_webstudio.js --name "webstudio"
+# Запускаем приложение через start_webstudio.cjs
+echo "6. Запускаем приложение через start_webstudio.cjs..."
+pm2 start start_webstudio.cjs --name "webstudio"
 
 # Сохраняем конфигурацию PM2
 echo "7. Сохраняем конфигурацию PM2..."
