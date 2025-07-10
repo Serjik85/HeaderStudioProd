@@ -20,12 +20,9 @@ pm2 kill
 echo "3. Переходим в директорию проекта..."
 cd /home/serhii/www
 
-# Устанавливаем ts-node если его нет
-echo "4. Проверяем наличие ts-node..."
-if ! npm list -g ts-node > /dev/null; then
-  echo "Устанавливаем ts-node глобально..."
-  npm install -g ts-node
-fi
+# Устанавливаем необходимые модули локально
+echo "4. Устанавливаем необходимые модули локально..."
+npm install --save-dev ts-node typescript dotenv
 
 # Проверяем наличие start-server.mjs
 echo "5. Проверяем наличие start-server.mjs..."
@@ -35,9 +32,9 @@ if [ ! -f "start-server.mjs" ]; then
   exit 1
 fi
 
-# Запускаем приложение через start-server.mjs
-echo "6. Запускаем приложение через start-server.mjs..."
-pm2 start start-server.mjs --name "webstudio" --interpreter=node
+# Запускаем приложение с использованием локальных модулей
+echo "6. Запускаем приложение с локальными модулями..."
+pm2 start "npx ts-node server/index.ts" --name "webstudio"
 
 # Сохраняем конфигурацию PM2
 echo "7. Сохраняем конфигурацию PM2..."
