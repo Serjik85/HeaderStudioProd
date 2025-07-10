@@ -29,6 +29,8 @@ export const translations = {
     performanceOptimizationDesc: "Lightning-fast websites that rank higher and convert better through advanced optimization.",
     analyticsSeo: "Analytics & SEO",
     analyticsSeoDesc: "Data-driven insights and search engine optimization to grow your online presence.",
+    technicalSupport: "Technical Support & Maintenance",
+    technicalSupportDesc: "Ongoing website maintenance, updates, and technical support to ensure optimal performance and security.",
 
     // Capabilities
     capabilitiesTitle: "Our Capabilities",
@@ -197,7 +199,9 @@ export const translations = {
     performanceOptimization: "Ydeevne optimering",
     performanceOptimizationDesc: "Lynhurtige hjemmesider der rangerer højere og konverterer bedre gennem avanceret optimering.",
     analyticsSeo: "Analyse & SEO",
-    analyticsSeoDesc: "Data-drevne indsigter og søgemaskineoptimering til at øge din online tilstedeværelse.",
+    analyticsSeoDesc: "Datadrevne indsigter og søgemaskineoptimering til at udvikle din online tilstedeværelse.",
+    technicalSupport: "Teknisk Support & Vedligeholdelse",
+    technicalSupportDesc: "Løbende vedligeholdelse af webstedet, opdateringer og teknisk support for at sikre optimal ydeevne og sikkerhed.",
 
     // Capabilities
     capabilitiesTitle: "Vores kompetencer",

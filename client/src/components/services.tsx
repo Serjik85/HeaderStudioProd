@@ -5,7 +5,8 @@ import {
   ShoppingCart, 
   Rocket, 
   BarChart3,
-  Check
+  Check,
+  Headphones
 } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 
@@ -64,6 +65,17 @@ const getServices = (t: (key: string) => string) => [
       "Content Strategy"
     ],
     color: "text-red-500 bg-red-500/10"
+  },
+  {
+    icon: Headphones,
+    title: t("technicalSupport"),
+    description: t("technicalSupportDesc"),
+    features: [
+      "24/7 Technical Support",
+      "Regular Updates & Maintenance",
+      "Security Monitoring"
+    ],
+    color: "text-purple-500 bg-purple-500/10"
   }
 ];
 
