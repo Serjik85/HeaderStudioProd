@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 export function Hero() {
+  const { t } = useLanguage();
   return (
     <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="container mx-auto px-6">
@@ -13,17 +15,17 @@ export function Hero() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-6xl font-bold text-slate-800 mb-6 leading-tight">
-              We Build <span className="text-primary-blue">Exceptional</span> Websites That Drive Results
+              {t("heroTitle")}
             </h1>
             <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-              Transform your business with custom web solutions that captivate your audience and accelerate growth. We craft digital experiences that convert.
+              {t("heroSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="bg-primary-blue hover:bg-secondary-blue">
-                <a href="#contact">Start Your Project</a>
+                <a href="#contact">{t("startProject")}</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white">
-                <a href="#capabilities">View Our Capabilities</a>
+                <a href="#capabilities">{t("viewCapabilities")}</a>
               </Button>
             </div>
           </motion.div>
@@ -50,8 +52,8 @@ export function Hero() {
                   <CheckCircle className="text-green-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-800">20+ Projects</p>
-                  <p className="text-slate-600 text-sm">Successfully Delivered</p>
+                  <p className="font-semibold text-slate-800">20+ {t("projectsDelivered")}</p>
+                  <p className="text-slate-600 text-sm">{t("successfullyDelivered")}</p>
                 </div>
               </div>
             </motion.div>

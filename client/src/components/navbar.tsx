@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Code } from "lucide-react";
+import { Code, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,9 +19,9 @@ export function Navbar() {
   }, []);
 
   const navItems = [
-    { href: "#services", label: "Services" },
-    { href: "#capabilities", label: "Capabilities" },
-    { href: "#about", label: "About" },
+    { href: "#services", label: t("services") },
+    { href: "#capabilities", label: t("capabilities") },
+    { href: "#about", label: t("about") },
   ];
 
   return (
@@ -45,8 +47,17 @@ export function Navbar() {
                 {item.label}
               </a>
             ))}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setLanguage(language === 'en' ? 'da' : 'en')}
+              className="text-slate-600 hover:text-primary-blue"
+            >
+              <Globe className="w-4 h-4 mr-1" />
+              {language === 'en' ? 'DA' : 'EN'}
+            </Button>
             <Button asChild className="bg-primary-blue hover:bg-secondary-blue">
-              <a href="#contact">Get Started</a>
+              <a href="#contact">{t("getStarted")}</a>
             </Button>
           </div>
           
@@ -74,9 +85,17 @@ export function Navbar() {
                   {item.label}
                 </a>
               ))}
+              <Button
+                variant="ghost"
+                onClick={() => setLanguage(language === 'en' ? 'da' : 'en')}
+                className="text-slate-600 hover:text-primary-blue justify-start"
+              >
+                <Globe className="w-4 h-4 mr-2" />
+                {language === 'en' ? 'Switch to Danish' : 'Switch to English'}
+              </Button>
               <Button asChild className="bg-primary-blue hover:bg-secondary-blue w-full">
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Get Started
+                  {t("getStarted")}
                 </a>
               </Button>
             </div>

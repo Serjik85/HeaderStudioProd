@@ -7,7 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { Mail, Phone, MapPin, Twitter, Linkedin, Dribbble, Github } from "lucide-react";
+import { Mail, MapPin, Twitter, Linkedin, Dribbble, Github } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 interface ContactFormData {
   name: string;
@@ -25,6 +26,7 @@ export function Contact() {
   });
   
   const { toast } = useToast();
+  const { t } = useLanguage();
   
   const mutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
@@ -33,8 +35,8 @@ export function Contact() {
     },
     onSuccess: () => {
       toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
+        title: t("messageSuccess"),
+        description: t("messageSuccessDesc"),
       });
       setFormData({
         name: "",
@@ -45,8 +47,8 @@ export function Contact() {
     },
     onError: (error: Error) => {
       toast({
-        title: "Error sending message",
-        description: error.message || "Please try again later.",
+        title: t("messageError"),
+        description: error.message || t("messageErrorDesc"),
         variant: "destructive",
       });
     }
@@ -56,8 +58,8 @@ export function Contact() {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: "Please fill in all required fields",
-        description: "Name, email, and message are required.",
+        title: t("fillRequired"),
+        description: t("fillRequiredDesc"),
         variant: "destructive",
       });
       return;
@@ -75,20 +77,14 @@ export function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
+      title: t("email"),
       value: "hello@header.studio",
       color: "text-primary-blue bg-primary-blue/10"
     },
     {
-      icon: Phone,
-      title: "Phone",
-      value: "+1 (555) 123-4567",
-      color: "text-accent-orange bg-accent-orange/10"
-    },
-    {
       icon: MapPin,
-      title: "Location",
-      value: "San Francisco, CA",
+      title: t("location"),
+      value: "Aarhus, Denmark",
       color: "text-green-600 bg-green-100"
     }
   ];
@@ -110,9 +106,9 @@ export function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">Ready to Get Started?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">{t("contactTitle")}</h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Let's discuss your project and create something amazing together. Get in touch today for a free consultation.
+            {t("contactSubtitle")}
           </p>
         </motion.div>
         
@@ -123,7 +119,7 @@ export function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-slate-800 mb-6">Get In Touch</h3>
+            <h3 className="text-2xl font-bold text-slate-800 mb-6">{t("getInTouch")}</h3>
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <motion.div
@@ -146,7 +142,7 @@ export function Contact() {
             </div>
             
             <div className="mt-8">
-              <h4 className="text-lg font-semibold text-slate-800 mb-4">Follow Us</h4>
+              <h4 className="text-lg font-semibold text-slate-800 mb-4">{t("followUs")}</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -172,24 +168,24 @@ export function Contact() {
             viewport={{ once: true }}
             className="bg-white rounded-2xl p-8 shadow-lg"
           >
-            <h3 className="text-2xl font-bold text-slate-800 mb-6">Send Message</h3>
+            <h3 className="text-2xl font-bold text-slate-800 mb-6">{t("sendMessage")}</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-slate-700 font-medium mb-2">Name *</label>
+                  <label className="block text-slate-700 font-medium mb-2">{t("nameLabel")} *</label>
                   <Input
                     type="text"
-                    placeholder="Your Name"
+                    placeholder={t("namePlaceholder")}
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-700 font-medium mb-2">Email *</label>
+                  <label className="block text-slate-700 font-medium mb-2">{t("emailLabel")} *</label>
                   <Input
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder={t("emailPlaceholder")}
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     required
@@ -198,10 +194,10 @@ export function Contact() {
               </div>
               
               <div>
-                <label className="block text-slate-700 font-medium mb-2">Company</label>
+                <label className="block text-slate-700 font-medium mb-2">{t("companyLabel")}</label>
                 <Input
                   type="text"
-                  placeholder="Your Company"
+                  placeholder={t("companyPlaceholder")}
                   value={formData.company}
                   onChange={(e) => handleInputChange("company", e.target.value)}
                 />
@@ -210,10 +206,10 @@ export function Contact() {
 
               
               <div>
-                <label className="block text-slate-700 font-medium mb-2">Message *</label>
+                <label className="block text-slate-700 font-medium mb-2">{t("messageLabel")} *</label>
                 <Textarea
                   rows={4}
-                  placeholder="Tell us about your project..."
+                  placeholder={t("messagePlaceholder")}
                   value={formData.message}
                   onChange={(e) => handleInputChange("message", e.target.value)}
                   required
@@ -225,7 +221,7 @@ export function Contact() {
                 className="w-full bg-primary-blue hover:bg-secondary-blue"
                 disabled={mutation.isPending}
               >
-                {mutation.isPending ? "Sending..." : "Send Message"}
+                {mutation.isPending ? t("sending") : t("sendMessageBtn")}
               </Button>
             </form>
           </motion.div>
