@@ -1,28 +1,31 @@
 import { Code, Twitter, Linkedin, Dribbble, Github } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 export function Footer() {
+  const { t } = useLanguage();
+  
   const serviceLinks = [
-    { name: "Web Development", href: "#services" },
-    { name: "UI/UX Design", href: "#services" },
-    { name: "E-commerce", href: "#services" },
-    { name: "Performance Optimization", href: "#services" },
-    { name: "SEO & Analytics", href: "#services" }
+    { name: t("customWebDev"), href: "#services" },
+    { name: t("uiUxDesign"), href: "#services" },
+    { name: t("ecommerceSolutions"), href: "#services" },
+    { name: t("performanceOptimization"), href: "#services" },
+    { name: t("analyticsSeo"), href: "#services" }
   ];
 
   const companyLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Capabilities", href: "#capabilities" },
-    { name: "Careers", href: "#" },
-    { name: "Contact", href: "#contact" },
-    { name: "Blog", href: "#" }
+    { name: t("aboutUs"), href: "#about" },
+    { name: t("capabilities"), href: "#capabilities" },
+    { name: t("careers"), href: "#" },
+    { name: t("contact"), href: "#contact" },
+    { name: t("blog"), href: "#" }
   ];
 
   const resourceLinks = [
-    { name: "Documentation", href: "#" },
-    { name: "Support", href: "#" },
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
-    { name: "FAQ", href: "#" }
+    { name: t("documentation"), href: "#" },
+    { name: t("support"), href: "#" },
+    { name: t("privacyPolicy"), href: "#" },
+    { name: t("termsOfService"), href: "#" },
+    { name: t("faq"), href: "#" }
   ];
 
   const socialLinks = [
@@ -44,7 +47,7 @@ export function Footer() {
               <span className="text-xl font-bold">header.studio</span>
             </div>
             <p className="text-slate-400 mb-4">
-              Creating exceptional web experiences that drive business growth and user engagement.
+              {t("footerDescription")}
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -60,7 +63,7 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("servicesFooter")}</h3>
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
@@ -73,7 +76,7 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("company")}</h3>
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.name}>
@@ -86,7 +89,7 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("resources")}</h3>
             <ul className="space-y-2">
               {resourceLinks.map((link) => (
                 <li key={link.name}>
@@ -101,7 +104,7 @@ export function Footer() {
         
         <div className="border-t border-slate-700 mt-8 pt-8 text-center">
           <p className="text-slate-400">
-            © 2024 header.studio. All rights reserved. Built with ❤️ for amazing businesses.
+            {t("footerCopyright")}
           </p>
         </div>
       </div>

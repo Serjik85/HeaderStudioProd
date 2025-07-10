@@ -75,6 +75,15 @@ export const translations = {
     // Testimonials
     testimonialsTitle: "What Our Clients Say",
     testimonialsSubtitle: "Don't just take our word for it – hear from businesses that have transformed their digital presence with us",
+    testimonial1Name: "Sarah Mitchell",
+    testimonial1Position: "CEO, TechFlow Solutions",
+    testimonial1Content: "header.studio completely transformed our online presence. The new website increased our conversions by 300% and the team was incredibly professional throughout the process.",
+    testimonial2Name: "Michael Johnson",
+    testimonial2Position: "Founder, ProLegal Services",
+    testimonial2Content: "Working with header.studio was a game-changer for our business. They delivered exactly what we needed, on time and within budget. Highly recommended!",
+    testimonial3Name: "Emma Rodriguez",
+    testimonial3Position: "Marketing Director, Bistro Deluxe",
+    testimonial3Content: "The attention to detail and creative approach from header.studio exceeded our expectations. Our new website perfectly represents our brand and drives real results.",
 
     // Contact
     contactTitle: "Ready to Get Started?",
@@ -125,6 +134,39 @@ export const translations = {
 
     // Call to action
     startProjectToday: "Start Your Project Today",
+    
+    // Pricing
+    choosePackage: "Choose Your Package",
+    pricingSubtitle: "Flexible pricing options designed to fit your business needs and budget",
+    mostPopular: "Most Popular",
+    
+    // Plans
+    starterPlan: "Starter",
+    professionalPlan: "Professional",
+    enterprisePlan: "Enterprise",
+    oneTime: "one-time",
+    starterPlanDesc: "Perfect for small businesses just getting started with their online presence",
+    professionalPlanDesc: "Comprehensive solution for growing businesses with more advanced needs",
+    enterprisePlanDesc: "Custom solution for large businesses with complex requirements",
+    
+    // Features
+    fivePageWebsite: "5-page website",
+    mobileResponsive: "Mobile responsive design",
+    basicSeo: "Basic SEO optimization",
+    contactForm: "Contact form",
+    threeMonthsSupport: "3 months support",
+    tenPageWebsite: "10-page website",
+    advancedUiUx: "Advanced UI/UX design",
+    cmsIntegration: "CMS integration",
+    ecommerceFunc: "E-commerce functionality",
+    analyticsSetup: "Analytics setup",
+    sixMonthsSupport: "6 months support",
+    unlimitedPages: "Unlimited pages",
+    customWebApp: "Custom web application",
+    advancedIntegrations: "Advanced integrations",
+    databaseDesignFeature: "Database design",
+    performanceOptimizationFeature: "Performance optimization",
+    twelveMonthsSupport: "12 months support",
   },
   da: {
     // Navigation
@@ -202,6 +244,15 @@ export const translations = {
     // Testimonials
     testimonialsTitle: "Hvad vores kunder siger",
     testimonialsSubtitle: "Tag ikke kun vores ord for det – hør fra virksomheder, der har transformeret deres digitale tilstedeværelse med os",
+    testimonial1Name: "Sarah Mitchell",
+    testimonial1Position: "Adm. direktør, TechFlow Solutions",
+    testimonial1Content: "header.studio har fuldstændigt transformeret vores online tilstedeværelse. Den nye hjemmeside øgede vores konverteringer med 300%, og teamet var utroligt professionelt gennem hele processen.",
+    testimonial2Name: "Michael Johnson",
+    testimonial2Position: "Grundlægger, ProLegal Services",
+    testimonial2Content: "At arbejde med header.studio var en game-changer for vores virksomhed. De leverede præcis, hvad vi havde brug for, til tiden og inden for budgettet. Kan varmt anbefales!",
+    testimonial3Name: "Emma Rodriguez",
+    testimonial3Position: "Marketingdirektør, Bistro Deluxe",
+    testimonial3Content: "Opmærksomheden på detaljer og den kreative tilgang fra header.studio overgik vores forventninger. Vores nye hjemmeside repræsenterer perfekt vores brand og driver reelle resultater.",
 
     // Contact
     contactTitle: "Klar til at komme i gang?",
@@ -252,6 +303,39 @@ export const translations = {
 
     // Call to action
     startProjectToday: "Start dit projekt i dag",
+    
+    // Pricing
+    choosePackage: "Vælg din pakke",
+    pricingSubtitle: "Fleksible prismuligheder designet til at passe til dine forretningsbehov og budget",
+    mostPopular: "Mest populær",
+    
+    // Plans
+    starterPlan: "Starter",
+    professionalPlan: "Professionel",
+    enterprisePlan: "Enterprise",
+    oneTime: "engangsbetaling",
+    starterPlanDesc: "Perfekt til små virksomheder, der lige er begyndt med deres online tilstedeværelse",
+    professionalPlanDesc: "Omfattende løsning til voksende virksomheder med mere avancerede behov",
+    enterprisePlanDesc: "Tilpasset løsning til store virksomheder med komplekse krav",
+    
+    // Features
+    fivePageWebsite: "5-siders hjemmeside",
+    mobileResponsive: "Mobil responsivt design",
+    basicSeo: "Grundlæggende SEO-optimering",
+    contactForm: "Kontaktformular",
+    threeMonthsSupport: "3 måneders support",
+    tenPageWebsite: "10-siders hjemmeside",
+    advancedUiUx: "Avanceret UI/UX design",
+    cmsIntegration: "CMS-integration",
+    ecommerceFunc: "E-handelsfunktionalitet",
+    analyticsSetup: "Analytics opsætning",
+    sixMonthsSupport: "6 måneders support",
+    unlimitedPages: "Ubegrænsede sider",
+    customWebApp: "Tilpasset webapplikation",
+    advancedIntegrations: "Avancerede integrationer",
+    databaseDesignFeature: "Database design",
+    performanceOptimizationFeature: "Ydeevne optimering",
+    twelveMonthsSupport: "12 måneders support",
   }
 };
 

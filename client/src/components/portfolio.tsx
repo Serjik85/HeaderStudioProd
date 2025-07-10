@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/use-language";
 import { 
   Code2, 
   Database, 
@@ -13,83 +14,89 @@ import {
   Users
 } from "lucide-react";
 
-const capabilities = [
+const getCapabilities = (t: (key: string) => string) => [
   {
     icon: Code2,
-    title: "Modern Technologies",
-    description: "We use cutting-edge frameworks and tools to build robust, scalable applications.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+    title: t("modernTech"),
+    description: t("modernTechDesc"),
+    technologies: ["HTML5", "CSS3", "JavaScript", "React"],
     color: "text-primary-blue bg-primary-blue/10"
   },
   {
     icon: Database,
-    title: "Database Design",
-    description: "Expert database architecture and optimization for high-performance applications.",
+    title: t("databaseDesign"),
+    description: t("databaseDesignDesc"),
     technologies: ["PostgreSQL", "MySQL", "Redis", "MongoDB"],
     color: "text-green-600 bg-green-100"
   },
   {
     icon: Zap,
-    title: "Performance Focus",
-    description: "Lightning-fast websites optimized for speed and user experience.",
+    title: t("performanceFocus"),
+    description: t("performanceFocusDesc"),
     technologies: ["CDN", "Caching", "Optimization", "Core Web Vitals"],
     color: "text-accent-orange bg-accent-orange/10"
   },
   {
     icon: Shield,
-    title: "Security First",
-    description: "Built-in security measures to protect your business and users.",
+    title: t("securityFirst"),
+    description: t("securityFirstDesc"),
     technologies: ["SSL", "Authentication", "Data Protection", "GDPR"],
     color: "text-red-500 bg-red-100"
   },
   {
     icon: Smartphone,
-    title: "Responsive Design",
-    description: "Perfect experience across all devices and screen sizes.",
-    technologies: ["Mobile-First", "Responsive", "Touch-Friendly", "PWA"],
+    title: t("responsiveDesign"),
+    description: t("responsiveDesignDesc"),
+    technologies: ["Mobile First", "Responsive", "Touch Friendly", "PWA"],
     color: "text-purple-500 bg-purple-100"
   },
   {
     icon: Globe,
-    title: "SEO Optimized",
-    description: "Built for search engines to maximize your online visibility.",
+    title: t("seoOptimized"),
+    description: t("seoOptimizedDesc"),
     technologies: ["Meta Tags", "Structured Data", "Sitemap", "Analytics"],
     color: "text-blue-500 bg-blue-100"
   }
 ];
 
-const workProcess = [
+const getWorkProcess = (t: (key: string) => string) => [
   {
     step: "01",
-    title: "Discovery & Planning",
-    description: "We understand your business goals, target audience, and technical requirements.",
+    title: t("discoveryPlanning"),
+    description: t("discoveryPlanningDesc"),
     icon: Users,
     color: "text-primary-blue"
   },
   {
     step: "02",
-    title: "Design & Prototype",
-    description: "Create wireframes and interactive prototypes to visualize your solution.",
+    title: t("designPrototype"),
+    description: t("designPrototypeDesc"),
     icon: Code2,
     color: "text-accent-orange"
   },
   {
     step: "03",
-    title: "Development",
-    description: "Build your website using modern technologies and best practices.",
+    title: t("development"),
+    description: t("developmentDesc"),
     icon: Zap,
     color: "text-green-600"
   },
   {
     step: "04",
-    title: "Testing & Launch",
-    description: "Thorough testing, optimization, and seamless deployment to production.",
+    title: t("testingLaunch"),
+    description: t("testingLaunchDesc"),
     icon: CheckCircle,
     color: "text-blue-600"
   }
 ];
 
 export function Portfolio() {
+  const { t } = useLanguage();
+  
+  // Get translated capabilities and work process
+  const capabilities = getCapabilities(t);
+  const workProcess = getWorkProcess(t);
+  
   return (
     <>
       {/* Our Capabilities Section */}
@@ -102,9 +109,9 @@ export function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">Our Capabilities</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">{t("capabilitiesTitle")}</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We leverage the latest technologies and best practices to deliver exceptional web solutions
+              {t("capabilitiesSubtitle")}
             </p>
           </motion.div>
           
@@ -140,9 +147,9 @@ export function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">How We Work</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">{t("howWeWorkTitle")}</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Our proven process ensures successful delivery of every project
+              {t("howWeWorkSubtitle")}
             </p>
           </motion.div>
           
@@ -179,7 +186,7 @@ export function Portfolio() {
             className="text-center mt-12"
           >
             <Button asChild size="lg" className="bg-primary-blue hover:bg-secondary-blue">
-              <a href="#contact">Start Your Project Today</a>
+              <a href="#contact">{t("startProject")}</a>
             </Button>
           </motion.div>
         </div>

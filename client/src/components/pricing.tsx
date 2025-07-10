@@ -2,51 +2,52 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/hooks/use-language";
 
-const plans = [
+const getPlans = (t: (key: string) => string) => [
   {
-    name: "Starter",
+    name: t("starterPlan"),
     price: "$2,499",
-    period: "one-time",
-    description: "Perfect for small businesses looking to establish their online presence",
+    period: t("oneTime"),
+    description: t("starterPlanDesc"),
     features: [
-      "5-page custom website",
-      "Mobile-responsive design",
-      "Basic SEO setup",
-      "Contact form integration",
-      "3 months support"
+      t("fivePageWebsite"),
+      t("mobileResponsive"),
+      t("basicSeo"),
+      t("contactForm"),
+      t("threeMonthsSupport")
     ],
     popular: false,
     buttonStyle: "bg-slate-200 text-slate-800 hover:bg-slate-300"
   },
   {
-    name: "Professional",
+    name: t("professionalPlan"),
     price: "$4,999",
-    period: "one-time",
-    description: "Ideal for growing businesses that need advanced features and functionality",
+    period: t("oneTime"),
+    description: t("professionalPlanDesc"),
     features: [
-      "10-page custom website",
-      "Advanced UI/UX design",
-      "CMS integration",
-      "E-commerce functionality",
-      "Analytics setup",
-      "6 months support"
+      t("tenPageWebsite"),
+      t("advancedUiUx"),
+      t("cmsIntegration"),
+      t("ecommerceFunc"),
+      t("analyticsSetup"),
+      t("sixMonthsSupport")
     ],
     popular: true,
     buttonStyle: "bg-white text-primary-blue hover:bg-slate-100"
   },
   {
-    name: "Enterprise",
+    name: t("enterprisePlan"),
     price: "$9,999",
-    period: "one-time",
-    description: "Complete solution for large businesses with complex requirements",
+    period: t("oneTime"),
+    description: t("enterprisePlanDesc"),
     features: [
-      "Unlimited pages",
-      "Custom web application",
-      "Advanced integrations",
-      "Database design",
-      "Performance optimization",
-      "12 months support"
+      t("unlimitedPages"),
+      t("customWebApp"),
+      t("advancedIntegrations"),
+      t("databaseDesignFeature"),
+      t("performanceOptimizationFeature"),
+      t("twelveMonthsSupport")
     ],
     popular: false,
     buttonStyle: "bg-slate-200 text-slate-800 hover:bg-slate-300"
@@ -54,6 +55,11 @@ const plans = [
 ];
 
 export function Pricing() {
+  const { t } = useLanguage();
+  
+  // Get translated plans
+  const plans = getPlans(t);
+  
   return (
     <section id="pricing" className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -64,9 +70,9 @@ export function Pricing() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">Choose Your Package</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">{t("choosePackage")}</h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Flexible pricing options designed to fit your business needs and budget
+            {t("pricingSubtitle")}
           </p>
         </motion.div>
         
@@ -86,7 +92,7 @@ export function Pricing() {
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-accent-orange text-white">Most Popular</Badge>
+                  <Badge className="bg-accent-orange text-white">{t("mostPopular")}</Badge>
                 </div>
               )}
               
@@ -119,7 +125,7 @@ export function Pricing() {
               </ul>
               
               <Button asChild className={`w-full ${plan.buttonStyle}`}>
-                <a href="#contact">Get Started</a>
+                <a href="#contact">{t("getStarted")}</a>
               </Button>
             </motion.div>
           ))}

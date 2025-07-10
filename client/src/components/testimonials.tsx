@@ -1,31 +1,37 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
-const testimonials = [
+const getTestimonials = (t: (key: string) => string) => [
   {
-    name: "Sarah Mitchell",
-    position: "CEO, TechFlow Solutions",
-    content: "header.studio completely transformed our online presence. The new website increased our conversions by 300% and the team was incredibly professional throughout the process.",
+    name: t("testimonial1Name"),
+    position: t("testimonial1Position"),
+    content: t("testimonial1Content"),
     initials: "SM",
     color: "bg-primary-blue/10 text-primary-blue"
   },
   {
-    name: "Michael Johnson",
-    position: "Founder, ProLegal Services",
-    content: "Working with header.studio was a game-changer for our business. They delivered exactly what we needed, on time and within budget. Highly recommended!",
+    name: t("testimonial2Name"),
+    position: t("testimonial2Position"),
+    content: t("testimonial2Content"),
     initials: "MJ",
     color: "bg-accent-orange/10 text-accent-orange"
   },
   {
-    name: "Emma Rodriguez",
-    position: "Marketing Director, Bistro Deluxe",
-    content: "The attention to detail and creative approach from header.studio exceeded our expectations. Our new website perfectly represents our brand and drives real results.",
+    name: t("testimonial3Name"),
+    position: t("testimonial3Position"),
+    content: t("testimonial3Content"),
     initials: "ER",
     color: "bg-green-100 text-green-600"
   }
 ];
 
 export function Testimonials() {
+  const { t } = useLanguage();
+  
+  // Get translated testimonials
+  const testimonials = getTestimonials(t);
+  
   return (
     <section className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
@@ -36,9 +42,9 @@ export function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">What Our Clients Say</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">{t("testimonialsTitle")}</h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Don't just take our word for it – hear from businesses that have transformed their digital presence with us
+            {t("testimonialsSubtitle")}
           </p>
         </motion.div>
         

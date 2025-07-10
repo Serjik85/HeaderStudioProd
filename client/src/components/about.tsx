@@ -1,28 +1,32 @@
 import { motion } from "framer-motion";
 import { Users, Clock, Headphones } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
-const features = [
+const getFeatures = (t: (key: string) => string) => [
   {
     icon: Users,
-    title: "Expert Team",
-    description: "Our skilled developers and designers bring years of experience and stay current with the latest technologies.",
+    title: t("expertTeam"),
+    description: t("expertTeamDesc"),
     color: "text-primary-blue bg-primary-blue/10"
   },
   {
     icon: Clock,
-    title: "Fast Delivery",
-    description: "We deliver projects on time without compromising quality, using agile methodologies for efficient development.",
+    title: t("fastDelivery"),
+    description: t("fastDeliveryDesc"),
     color: "text-accent-orange bg-accent-orange/10"
   },
   {
     icon: Headphones,
-    title: "24/7 Support",
-    description: "Ongoing support and maintenance to ensure your website continues to perform at its best.",
+    title: t("support247"),
+    description: t("support247Desc"),
     color: "text-green-600 bg-green-100"
   }
 ];
 
 export function About() {
+  const { t } = useLanguage();
+  const features = getFeatures(t);
+  
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -34,14 +38,14 @@ export function About() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-              Why Choose header.studio?
+              {t("aboutTitle")}
             </h2>
             <p className="text-xl text-slate-600 mb-8">
-              We're not just developers – we're your digital partners committed to transforming your vision into reality with cutting-edge technology and creative excellence.
+              {t("aboutSubtitle")}
             </p>
             
             <div className="space-y-6">
-              {features.map((feature, index) => (
+              {features.map((feature: any, index: number) => (
                 <motion.div
                   key={feature.title}
                   initial={{ opacity: 0, y: 20 }}
