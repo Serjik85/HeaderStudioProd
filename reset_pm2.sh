@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Скрипт для полного сброса и перезапуска PM2 с правильными настройками
+# Должен быть запущен на Raspberry Pi
+
+echo "Полный сброс PM2 и перезапуск приложения Web Studio"
+echo "===================================================="
+
+# Останавливаем все процессы PM2
+echo "1. Останавливаем все процессы PM2..."
+pm2 stop all
+pm2 delete all
+
+# Очищаем кэш PM2
+echo "2. Очищаем кэш PM2..."
+pm2 flush
+pm2 kill
+
+# Переходим в директорию проекта
+echo "3. Переходим в директорию проекта..."
+cd /home/serhii/www
+
+# Устанавливаем ts-node если его нет
+echo "4. Проверяем наличие ts-node..."
+if ! npm list -g ts-node > /dev/null; then
+  echo "Устанавливаем ts-node глобально..."
+  npm install -g ts-node
+fi
+
+# Проверяем наличие start_webstudio.js
+echo "5. Проверяем наличие start_webstudio.js..."
+if [ ! -f "start_webstudio.js" ]; then
+  echo "ОШИБКА: Файл start_webstudio.js не найден!"
+  echo "Пожалуйста, обновите код с GitHub перед запуском этого скрипта."
+  exit 1
+fi
+
+# Запускаем приложение через start_webstudio.js
+echo "6. Запускаем приложение через start_webstudio.js..."
+pm2 start start_webstudio.js --name "webstudio"
+
+# Сохраняем конфигурацию PM2
+echo "7. Сохраняем конфигурацию PM2..."
+pm2 save
+
+# Настраиваем автозапуск PM2
+echo "8. Настраиваем автозапуск PM2..."
+pm2 startup
+
+echo "===================================================="
+echo "Готово! Приложение запущено и настроено на автозапуск."
+echo "Проверить статус: pm2 status"
+echo "Просмотреть логи: pm2 logs webstudio"
+echo "Приложение доступно по адресу: http://$(hostname -I | awk '{print $1}'):3001"
