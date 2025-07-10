@@ -16,7 +16,7 @@ cd $PROJECT_DIR
 
 # Запуск приложения
 echo "Запускаем приложение..."
-pm2 start start_webstudio.cjs --name "webstudio"
+pm2 start start-server.mjs --name "webstudio" --interpreter=node
 
 # Сохранение конфигурации PM2
 echo "Сохраняем конфигурацию PM2..."
