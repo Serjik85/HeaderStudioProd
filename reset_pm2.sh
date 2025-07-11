@@ -24,17 +24,17 @@ cd /home/serhii/www
 echo "4. Устанавливаем необходимые модули локально..."
 npm install --save-dev ts-node typescript dotenv
 
-# Проверяем наличие start-server.mjs
-echo "5. Проверяем наличие start-server.mjs..."
-if [ ! -f "start-server.mjs" ]; then
-  echo "ОШИБКА: Файл start-server.mjs не найден!"
+# Проверяем наличие start.js
+echo "5. Проверяем наличие start.js..."
+if [ ! -f "start.js" ]; then
+  echo "ОШИБКА: Файл start.js не найден!"
   echo "Пожалуйста, обновите код с GitHub перед запуском этого скрипта."
   exit 1
 fi
 
-# Запускаем приложение с использованием локальных модулей
-echo "6. Запускаем приложение с локальными модулями..."
-pm2 start "npx ts-node server/index.ts" --name "webstudio"
+# Запускаем приложение через start.js
+echo "6. Запускаем приложение через start.js..."
+pm2 start start.js --name "webstudio"
 
 # Сохраняем конфигурацию PM2
 echo "7. Сохраняем конфигурацию PM2..."
