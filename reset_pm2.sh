@@ -24,17 +24,17 @@ cd /home/serhii/www
 echo "4. Устанавливаем необходимые модули локально..."
 npm install --save-dev ts-node typescript dotenv
 
-# Проверяем наличие start.js
-echo "5. Проверяем наличие start.js..."
-if [ ! -f "start.js" ]; then
-  echo "ОШИБКА: Файл start.js не найден!"
+# Проверяем наличие start.cjs
+echo "5. Проверяем наличие start.cjs..."
+if [ ! -f "start.cjs" ]; then
+  echo "ОШИБКА: Файл start.cjs не найден!"
   echo "Пожалуйста, обновите код с GitHub перед запуском этого скрипта."
   exit 1
 fi
 
-# Запускаем приложение через start.js
-echo "6. Запускаем приложение через start.js..."
-pm2 start start.js --name "webstudio"
+# Запускаем приложение через start.cjs
+echo "6. Запускаем приложение через start.cjs..."
+pm2 start start.cjs --name "webstudio"
 
 # Сохраняем конфигурацию PM2
 echo "7. Сохраняем конфигурацию PM2..."
